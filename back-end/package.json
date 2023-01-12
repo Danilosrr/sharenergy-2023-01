@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "index.js",
+  "main": "src/server.ts",
   "scripts": {
     "build": "tsc",
     "start": "npm run prisma:deploy && node dist/src/server.js",
     "dev": "nodemon src/server.ts",
     "prisma:deploy": "prisma migrate deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   },
   "keywords": [],
   "author": "",
