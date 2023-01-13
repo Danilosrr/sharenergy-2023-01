@@ -37,6 +37,9 @@ async function updateClient(client: ClientId) {
 }
 
 async function deleteClient(id: string) {
+  const checkId = await clientsRepository.findById(id);
+  if (!checkId) throw notFoundError("client not found!");
+
   const deletedClient = await clientsRepository.deleteClient(id);
   return deletedClient;
 }
