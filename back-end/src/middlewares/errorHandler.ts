@@ -1,13 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 
 const errorStatusCode = {
+  bad_request: 400,
   unauthorized: 401,
   conflict: 409,
-  unprocessable_entity: 422,
-  failed_dependency: 424,
   not_found: 404,
   forbidden: 403,
-  bad_request: 400,
   invalid_token: 498,
 };
 
@@ -19,12 +17,6 @@ export function unauthorizedError(text?: string) {
 }
 export function conflictError(text?: string) {
   return { type: "conflict", message: text };
-}
-export function unprocessableEntityError(text?: string) {
-  return { type: "unprocessable_entity", message: text };
-}
-export function failedDependencyError(text?: string) {
-  return { type: "failed_dependency", message: text };
 }
 export function notFoundError(text?: string) {
   return { type: "not_found", message: text };

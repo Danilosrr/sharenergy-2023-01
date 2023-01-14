@@ -1,16 +1,16 @@
 import { Client, ClientId } from "../interfaces/clients.interface.js";
 import { clientsRepository } from "../repositories/clients.repository.js";
-import { notFoundError, unauthorizedError } from "../middlewares/errorHandler.js";
+import { conflictError, notFoundError } from "../middlewares/errorHandler.js";
 
 async function createClient(client: Client) {
   const checkName = await clientsRepository.findByName(client.name);
-  if (checkName) throw unauthorizedError("name already in use!");
+  if (checkName) throw conflictError("name already in use!");
 
   const checkCpf = await clientsRepository.findByCpf(client.cpf);
-  if (checkCpf) throw unauthorizedError("cpf already in use!");
+  if (checkCpf) throw conflictError("cpf already in use!");
 
   const checkEmail = await clientsRepository.findByEmail(client.email);
-  if (checkEmail) throw unauthorizedError("email already in use!");
+  if (checkEmail) throw conflictError("email already in use!");
 
   const newClient = await clientsRepository.createClient(client);
   return newClient;
@@ -22,15 +22,15 @@ async function updateClient(client: ClientId) {
 
   const checkName = await clientsRepository.findByName(client.name);
   if (checkName && checkName.id != client.id)
-    throw unauthorizedError("name already in use!");
+    throw conflictError("name already in use!");
 
   const checkCpf = await clientsRepository.findByCpf(client.cpf);
   if (checkCpf && checkCpf.id != client.id)
-    throw unauthorizedError("cpf already in use!");
+    throw conflictError("cpf already in use!");
 
   const checkEmail = await clientsRepository.findByEmail(client.email);
   if (checkEmail && checkEmail.id != client.id)
-    throw unauthorizedError("email already in use!");
+    throw conflictError("email already in use!");
 
   const updatedClient = await clientsRepository.updateClient(client);
   return updatedClient;

@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { NextFunction, Request, Response } from "express";
-import { badRequestError, unauthorizedError } from "./errorHandler.js";
+import { badRequestError, invalidTokenError, unauthorizedError } from "./errorHandler.js";
 import { usersRepository } from "../repositories/users.repository.js";
 import { Token } from "../interfaces/users.interfaces.js";
 
@@ -16,7 +16,7 @@ export default async function validateToken(
   if (!token) throw unauthorizedError("missing token");
 
   jwt.verify(token, secretKey, function (err) {
-    if (err) throw unauthorizedError("invalid token");
+    if (err) throw invalidTokenError("invalid token");
   });
 
   const tokenJSON = jwt.decode(token) as Token;
