@@ -5,8 +5,7 @@ import {
   FormControlLabel,
   TextField,
 } from "@mui/material";
-import { AxiosError } from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import PasswordInput from "../components/PasswordInput";
@@ -14,7 +13,7 @@ import useAuth from "../hooks/useAuth";
 import { api, SignInData } from "../services/api";
 
 function SignIn() {
-  const { signIn } = useAuth();
+  const { signIn, token } = useAuth();
   const navigate = useNavigate();
   const [remember, setRemember] = useState<boolean>(false);
   const [formData, setFormData] = useState<SignInData>({
@@ -61,7 +60,7 @@ function SignIn() {
       const { token } = (await api.signIn(formData)).data;
       signIn(token, remember);
       navigate("app/Home");
-    } catch (error: Error | AxiosError | any) {
+    } catch (error: Error | any) {
       if (error.response) {
         console.log(error);
       }
@@ -75,6 +74,10 @@ function SignIn() {
   function handleCheckChange(e: React.ChangeEvent<HTMLInputElement>) {
     setRemember(e.target.checked);
   }
+
+  useEffect(() => {
+    if (token) navigate("app/Home");
+  });
 
   return (
     <Box component={"form"} sx={styles.container} onSubmit={handleSubmit}>

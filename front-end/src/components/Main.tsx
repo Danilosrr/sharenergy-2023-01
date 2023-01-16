@@ -56,17 +56,16 @@ export function MainApp() {
               <MenuIcon />
             </IconButton>
             <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-              <MenuItem>pagina 1</MenuItem>
-              <MenuItem>pagina 2</MenuItem>
-              <MenuItem>pagina 3</MenuItem>
-              <MenuItem>pagina 4</MenuItem>
+              <MenuItem onClick={() => navigate("/app/Home")}>página 1</MenuItem>
+              <MenuItem>página 2</MenuItem>
+              <MenuItem>página 3</MenuItem>
+              <MenuItem>página 4</MenuItem>
             </Menu>
             <Box flexGrow={1} />
             <Tab
               label="logout"
-              iconPosition="start"
-              icon={<LogoutIcon />}
-              onClick={handleSignOut}
+              iconPosition="end"
+              icon={<LogoutIcon onClick={handleSignOut} />}
             />
           </Toolbar>
         </AppBar>

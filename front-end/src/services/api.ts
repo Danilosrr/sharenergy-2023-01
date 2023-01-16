@@ -16,6 +16,14 @@ async function signIn(data: SignInData) {
   return await baseAPI.post<Token>("/signin", data);
 }
 
+async function getUsers(page: number) {
+  const pageSize = 10;
+  const url = `https://randomuser.me/api/?page=${page}&results=${pageSize}&seed=abc`;
+
+  return await axios.get(url);
+}
+
 export const api = {
   signIn,
+  getUsers,
 };
