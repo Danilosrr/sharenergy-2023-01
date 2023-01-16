@@ -3,14 +3,16 @@ import { Box, Button, Chip, SxProps, Theme } from "@mui/material";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+
 interface Props {
   value: number;
   setValue: Dispatch<SetStateAction<number>>;
   sx?: SxProps<Theme>;
-  limit?: number;
+  limit: number;
 }
 
-function Pagination({ value, setValue, limit, sx }: Props) {
+function Pagination({ value, setValue, limit }: Props) {
   const style = {
     pagination: {
       display: "flex",
@@ -27,6 +29,10 @@ function Pagination({ value, setValue, limit, sx }: Props) {
     setValue(1);
   }
 
+  function handleLastPage() {
+    setValue(limit);
+  }
+
   function handleNextPage() {
     if (limit && value >= limit) return;
     setValue(value + 1);
@@ -41,11 +47,14 @@ function Pagination({ value, setValue, limit, sx }: Props) {
       <Button
         startIcon={<KeyboardDoubleArrowLeftIcon />}
         onClick={handleFirstPage}
-        sx={{ position: "absolute", left: 0 }}
       />
       <Button endIcon={<NavigateBeforeIcon />} onClick={handleBeforePage} />
       <Chip label={value} clickable />
       <Button startIcon={<NavigateNextIcon />} onClick={handleNextPage} />
+      <Button
+        startIcon={<KeyboardDoubleArrowRightIcon />}
+        onClick={handleLastPage}
+      />
     </Box>
   );
 }

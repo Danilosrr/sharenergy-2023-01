@@ -4,6 +4,17 @@ export interface SignInData {
   username: string;
   password: string;
 }
+export interface UsersData {
+  dob: object;
+  email: string;
+  login: { username: string };
+  name: { first: string; last: string; title: string };
+  picture: object;
+}
+export interface SearchData {
+  filter: "username" | "email" | "name" | "";
+  search: string;
+}
 export interface Token {
   token: string;
 }
@@ -16,9 +27,8 @@ async function signIn(data: SignInData) {
   return await baseAPI.post<Token>("/signin", data);
 }
 
-async function getUsers(page: number) {
-  const pageSize = 10;
-  const url = `https://randomuser.me/api/?page=${page}&results=${pageSize}&seed=abc`;
+async function getUsers(resultsTotal: number) {
+  const url = `https://randomuser.me/api/?results=${resultsTotal}&seed=abc&inc=name,email,login,picture,dob`;
 
   return await axios.get(url);
 }

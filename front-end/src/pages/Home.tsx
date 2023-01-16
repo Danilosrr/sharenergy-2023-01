@@ -8,33 +8,59 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import Pagination from "../components/Pagination";
-import { api } from "../services/api";
+import SearchBar from "../components/SearchBar";
+import { api, UsersData } from "../services/api";
 
 function Home() {
+  const [allUsers, setAllUsers] = useState<UsersData[] | undefined>(undefined);
+  const [users, setUsers] = useState<UsersData[]>([]);
+  const [usersPaginated, setUsersPaginated] = useState<UsersData[]>([]);
   const [page, setPage] = useState<number>(1);
-  const [users, setUsers] = useState([]);
+  const [resultsTotal, setResultsTotal] = useState<number>(100);
+  const [search, setSearch] = useState<boolean>(false);
 
   const style = {
     item: { marginBottom: "5px", backgroundColor: "#ffffff" },
     info: { display: "flex", gap: "5px" },
   };
+  const pageSize = 10;
 
-  async function handleUsers(page: number) {
-    const users = (await api.getUsers(page)).data;
-    setUsers(users.results);
-    console.log(users.results);
+  async function initializeUsers(resultsTotal: number) {
+    const users = (await api.getUsers(resultsTotal)).data.results;
+    setAllUsers(users);
+    paginateUsers(page, users);
+    console.log("initializeUsers", users);
+  }
+
+  function paginateUsers(page: number, users: UsersData[]) {
+    const indexLast = page * pageSize;
+    const indexFirst = indexLast - pageSize;
+    const usersPaginated = users.slice(indexFirst, indexLast);
+    setUsersPaginated(usersPaginated);
+    setResultsTotal(users.length);
+    console.log("paginateUsers", resultsTotal);
   }
 
   useEffect(() => {
-    handleUsers(page);
-  }, [page]);
+    if (!allUsers) initializeUsers(resultsTotal);
+    else {
+      if (search) paginateUsers(page, users);
+      else paginateUsers(page, allUsers);
+    }
+    // eslint-disable-next-line
+  }, [page, users]);
 
   return (
     <>
-      <Pagination limit={10} value={page} setValue={setPage} />
+      <Pagination
+        limit={Math.ceil(resultsTotal / pageSize)}
+        value={page}
+        setValue={setPage}
+      />
+      <SearchBar list={allUsers} setList={setUsers} setSearch={setSearch} />
       <List sx={{ overflowY: "auto", overflowX: "hidden", width: "100%" }}>
-        {users.length > 0 ? (
-          users.map((user: any) => {
+        {usersPaginated.length > 0 ? (
+          usersPaginated.map((user: any) => {
             const { name, email, login, picture, dob } = user;
             return (
               <ListItem
