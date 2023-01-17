@@ -59,7 +59,7 @@ export function MainApp() {
             <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
               <MenuItem onClick={() => navigate("/app/Home")}>página 1</MenuItem>
               <MenuItem onClick={() => navigate("/app/Status")}>página 2</MenuItem>
-              <MenuItem>página 3</MenuItem>
+              <MenuItem onClick={() => navigate("/app/Dog")}>página 3</MenuItem>
               <MenuItem>página 4</MenuItem>
             </Menu>
             <Box flexGrow={1} />

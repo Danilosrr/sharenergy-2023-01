@@ -32,8 +32,14 @@ async function getUsers(resultsTotal: number) {
 
   return await axios.get(url);
 }
+async function getDogImage() {
+  const url = "https://random.dog/woof?filter=mp4,webm";
+  const src = (await axios.get(url)).data;
+  return "https://random.dog/" + src;
+}
 
 export const api = {
   signIn,
   getUsers,
+  getDogImage,
 };

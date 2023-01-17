@@ -14,6 +14,7 @@ function StatusPage() {
       alignItems: "center",
       width: "100%",
       height: "100%",
+
     },
     imageContainer: {
       display: "flex",
