@@ -36,6 +36,7 @@ export function MainApp() {
   function handleClose() {
     setAnchorEl(null);
   }
+
   const navigate = useNavigate();
 
   function handleSignOut() {
@@ -57,7 +58,7 @@ export function MainApp() {
             </IconButton>
             <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
               <MenuItem onClick={() => navigate("/app/Home")}>página 1</MenuItem>
-              <MenuItem>página 2</MenuItem>
+              <MenuItem onClick={() => navigate("/app/Status")}>página 2</MenuItem>
               <MenuItem>página 3</MenuItem>
               <MenuItem>página 4</MenuItem>
             </Menu>

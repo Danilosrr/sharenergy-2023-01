@@ -5,6 +5,7 @@ import { MainApp } from "./components/Main";
 import { AuthProvider } from "./contexts/authContext";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
+import StatusPage from "./pages/StatusPage";
 
 function App() {
   const theme = createTheme({
@@ -24,6 +25,7 @@ function App() {
             <Route path="/" element={<SignIn />} />
             <Route path="app" element={<MainApp />}>
               <Route path="/app/Home" element={<Home />} />
+              <Route path="/app/Status" element={<StatusPage />} />
             </Route>
           </Routes>
         </BrowserRouter>
