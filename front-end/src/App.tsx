@@ -1,8 +1,11 @@
 import { ThemeProvider } from "@emotion/react";
 import { createTheme, CssBaseline } from "@mui/material";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Alert from "./components/Alert";
 import { MainApp } from "./components/Main";
+import { AlertProvider } from "./contexts/AlertContext";
 import { AuthProvider } from "./contexts/authContext";
+import Clients from "./pages/Clients";
 import DogPage from "./pages/DogPage";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
@@ -20,6 +23,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <AlertProvider>
       <AuthProvider>
         <BrowserRouter>
           <Routes>
@@ -28,10 +32,13 @@ function App() {
               <Route path="/app/Home" element={<Home />} />
               <Route path="/app/Status" element={<StatusPage />} />
               <Route path="/app/Dog" element={<DogPage />} />
+              <Route path="/app/Clients" element={<Clients />} />
             </Route>
           </Routes>
         </BrowserRouter>
+        <Alert/>
       </AuthProvider>
+      </AlertProvider>
     </ThemeProvider>
   );
 }

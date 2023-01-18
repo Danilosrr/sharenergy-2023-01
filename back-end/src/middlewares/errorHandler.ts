@@ -7,6 +7,7 @@ const errorStatusCode = {
   not_found: 404,
   forbidden: 403,
   invalid_token: 498,
+  unprocessable_entity: 422,
 };
 
 export function badRequestError(text?: string) {
@@ -26,6 +27,9 @@ export function forbiddenError(text?: string) {
 }
 export function invalidTokenError(text?: string) {
   return { type: "invalid_token", message: text };
+}
+export function unprocessableEntityError(text?: string) {
+  return { type: "unprocessable_entity", message: text };
 }
 
 export default function handleErrors(

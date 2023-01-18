@@ -1,7 +1,6 @@
-import { Box, IconButton, Modal, OutlinedInput } from "@mui/material";
+import { Box, IconButton, OutlinedInput } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { ChangeEvent, useEffect, useState } from "react";
-import { style } from "@mui/system";
+import { ChangeEvent, useState } from "react";
 
 function StatusPage() {
   const [statusCode, setStatusCode] = useState<number>(0);
@@ -14,7 +13,6 @@ function StatusPage() {
       alignItems: "center",
       width: "100%",
       height: "100%",
-
     },
     imageContainer: {
       display: "flex",
@@ -28,22 +26,22 @@ function StatusPage() {
   function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
     setFormStatus(+e.target.value);
   }
-
   function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
     setStatusCode(formStatus);
   }
 
   return (
-    <Box component={"form"} sx={styles.container}>
+    <Box component={"form"} sx={styles.container} onSubmit={handleSubmit}>
       <OutlinedInput
         type="number"
         size="small"
         placeholder="Status code"
         name="status"
-        sx={{marginTop: "5px"}}
+        sx={{ marginTop: "5px" }}
         onChange={handleInputChange}
         endAdornment={
-          <IconButton onClick={handleSubmit}>
+          <IconButton type="submit">
             <SearchIcon fontSize="small" />
           </IconButton>
         }

@@ -21,9 +21,7 @@ async function signInService(user: User) {
   const passwordMatch = compare(password, userFound.password);
   if (!passwordMatch) throw forbiddenError("incorrect password");
 
-  const token = jwt.sign({ username, id: userFound.id }, process.env.JWT_KEY, {
-    expiresIn: "24h",
-  });
+  const token = jwt.sign({ username, id: userFound.id }, process.env.JWT_KEY);
 
   return { token: token };
 }
