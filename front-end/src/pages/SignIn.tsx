@@ -9,11 +9,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import PasswordInput from "../components/PasswordInput";
+import useAlert from "../hooks/useAlert";
 import useAuth from "../hooks/useAuth";
 import { api, SignInData } from "../services/api";
 
 function SignIn() {
   const { signIn, token } = useAuth();
+  const { setMessage } = useAlert();
   const navigate = useNavigate();
   const [remember, setRemember] = useState<boolean>(false);
   const [formData, setFormData] = useState<SignInData>({
@@ -52,7 +54,7 @@ function SignIn() {
     const { username, password } = formData;
 
     if (!username || !password) {
-      console.log("Todos os campos são obrigatórios!");
+      setMessage({ type: "error", text: "All fields are required!" });
       return;
     }
 
@@ -60,10 +62,8 @@ function SignIn() {
       const { token } = (await api.signIn(formData)).data;
       signIn(token, remember);
       navigate("app/Home");
-    } catch (error: Error | any) {
-      if (error.response) {
-        console.log(error);
-      }
+    } catch (error: any) {
+      console.log(error);
     }
   }
 

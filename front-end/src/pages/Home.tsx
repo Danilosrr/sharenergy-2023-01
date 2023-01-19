@@ -29,7 +29,6 @@ function Home() {
     const users = (await api.getUsers(resultsTotal)).data.results;
     setAllUsers(users);
     paginateUsers(page, users);
-    console.log("initializeUsers", users);
   }
 
   function paginateUsers(page: number, users: UsersData[]) {
@@ -38,7 +37,6 @@ function Home() {
     const usersPaginated = users.slice(indexFirst, indexLast);
     setUsersPaginated(usersPaginated);
     setResultsTotal(users.length);
-    console.log("paginateUsers", resultsTotal);
   }
 
   useEffect(() => {

@@ -39,7 +39,6 @@ function SearchBar({ list, setList, setSearch }: Props) {
     if (!formData.filter || !list) return;
 
     searchUsers(formData, list);
-    console.log(formData);
   }
 
   function handleInputChange(
@@ -54,7 +53,6 @@ function SearchBar({ list, setList, setSearch }: Props) {
     const { filter, search } = formData;
 
     setSearch(!!search);
-    console.log("search", !!search);
 
     if (filter === "name") {
       const filteredList = list.filter((item) =>
@@ -63,7 +61,6 @@ function SearchBar({ list, setList, setSearch }: Props) {
         )
       );
       setList(filteredList);
-      console.log("filteredByName", filteredList);
     }
 
     if (filter === "email") {
@@ -71,7 +68,6 @@ function SearchBar({ list, setList, setSearch }: Props) {
         item.email.toLowerCase().includes(search.toLowerCase())
       );
       setList(filteredList);
-      console.log("filteredByEmail", filteredList);
     }
 
     if (filter === "username") {
@@ -79,7 +75,6 @@ function SearchBar({ list, setList, setSearch }: Props) {
         item.login.username.toLowerCase().includes(search.toLowerCase())
       );
       setList(filteredList);
-      console.log("filteredByUsername", filteredList);
     }
   }
 

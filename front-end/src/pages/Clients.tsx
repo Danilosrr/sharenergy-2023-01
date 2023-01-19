@@ -30,7 +30,6 @@ function Clients() {
   useEffect(() => {
     if (!token) return;
     else getClients(token);
-    console.log("useEffect");
     // eslint-disable-next-line
   }, [refresh]);
 

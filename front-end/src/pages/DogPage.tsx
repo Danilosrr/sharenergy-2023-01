@@ -20,7 +20,6 @@ function DogPage() {
   async function getImage() {
     const dog = await api.getDogImage();
     setImageUrl(dog);
-    console.log(dog);
   }
 
   return (

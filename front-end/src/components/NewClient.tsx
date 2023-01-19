@@ -40,7 +40,6 @@ function NewClient({ refresh, close }: Props) {
       if (token) await api.postClient(formData, token);
       refresh(JSON.stringify(formData));
       close(false);
-      console.log("post");
     } catch (error: any) {
       if (error.response?.status === 409)
         setMessage({ type: "error", text: error.response.data });
