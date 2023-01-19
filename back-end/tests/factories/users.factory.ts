@@ -26,8 +26,21 @@ async function createAdmin(data: User) {
   });
 }
 
+async function userToken(data: User) {
+  const { username, id } = await usersFactory.createAdmin(data);
+  const token = jwt.sign({ username, id }, process.env.JWT_KEY);
+  return token;
+}
+
+async function invalidToken(data: User) {
+  const token = jwt.sign(data, process.env.JWT_KEY);
+  return token;
+}
+
 export const usersFactory = {
   clearDatabase,
   signinBody,
   createAdmin,
+  userToken,
+  invalidToken,
 };

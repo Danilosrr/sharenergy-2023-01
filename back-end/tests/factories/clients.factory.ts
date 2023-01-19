@@ -1,9 +1,6 @@
 import { prisma } from "../../src/config/database";
 import { faker } from "@faker-js/faker";
 import Cryptr from "cryptr";
-import jwt from "jsonwebtoken";
-import { User } from "../../src/interfaces/users.interfaces";
-import { usersFactory } from "./users.factory";
 
 const cryptr = new Cryptr(process.env.CRYPTR_KEY);
 
@@ -30,20 +27,19 @@ function clientBody(valid: boolean) {
   else return { ...body, unnecessaryProperty: faker.random.word() };
 }
 
-async function userToken(data: User) {
-  const { username, id } = await usersFactory.createAdmin(data);
-  const token = jwt.sign({ username, id }, process.env.JWT_KEY);
-  return token;
+async function clientId(name: string) {
+  return await prisma.clients.findUnique({ where: { name } });
 }
 
-async function invalidToken(data: User) {
-  const token = jwt.sign(data, process.env.JWT_KEY);
-  return token;
+function randomHex(size: number) {
+  return [...Array(size)]
+    .map(() => Math.floor(Math.random() * 16).toString(16))
+    .join("");
 }
 
 export const clientsFactory = {
   clearDatabase,
   clientBody,
-  userToken,
-  invalidToken,
+  clientId,
+  randomHex,
 };

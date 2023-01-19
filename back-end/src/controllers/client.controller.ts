@@ -16,7 +16,7 @@ export async function getClients(req: Request, res: Response) {
 export async function updateClient(req: Request, res: Response) {
   const client: ClientId = req.body;
   const updatedClient = await clientServices.updateClient(client);
-  res.status(201).send(updatedClient);
+  res.status(200).send(updatedClient);
 }
 
 export async function deleteClient(req: Request, res: Response) {

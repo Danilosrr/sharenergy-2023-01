@@ -73,7 +73,7 @@ export const swaggerDocument = {
         },
         responses: {
           201: {
-            description: "cadastro realizado",
+            description: "Cliente cadastrado",
             content: {
               "application/json": {
                 schema: {
@@ -82,7 +82,7 @@ export const swaggerDocument = {
               },
             },
           },
-          400: { description: "valores inválidos" },
+          400: { description: "token com valores inválidos" },
           401: { description: "token ausente" },
           409: { description: "nome, cpf ou email já cadastrados" },
           422: { description: "corpo da requisição inválido" },
@@ -95,6 +95,7 @@ export const swaggerDocument = {
         security: [{ bearerAuth: [] }],
         responses: {
           200: {
+            description: "Lista de clientes",
             content: {
               "application/json": {
                 schema: {
@@ -106,7 +107,7 @@ export const swaggerDocument = {
               },
             },
           },
-          400: { description: "valores inválidos" },
+          400: { description: "token com valores inválidos" },
           401: { description: "token ausente" },
           498: { description: "token inválido" },
         },
@@ -127,7 +128,7 @@ export const swaggerDocument = {
         },
         responses: {
           200: {
-            description: "cadastro realizado",
+            description: "Dados do cliente atualizados",
             content: {
               "application/json": {
                 schema: {
@@ -136,7 +137,7 @@ export const swaggerDocument = {
               },
             },
           },
-          400: { description: "valores inválidos" },
+          400: { description: "token com valores inválidos" },
           401: { description: "token ausente" },
           404: { description: "cliente não encontrado" },
           409: { description: "nome, cpf ou email já cadastrados" },
@@ -160,7 +161,7 @@ export const swaggerDocument = {
         },
         responses: {
           200: {
-            description: "cadastro realizado",
+            description: "Cliente deletado",
             content: {
               "application/json": {
                 schema: {
@@ -169,7 +170,7 @@ export const swaggerDocument = {
               },
             },
           },
-          400: { description: "valores inválidos" },
+          400: { description: "token com valores inválidos" },
           401: { description: "token ausente" },
           404: { description: "cliente não encontrado" },
           422: { description: "corpo da requisição inválido" },
