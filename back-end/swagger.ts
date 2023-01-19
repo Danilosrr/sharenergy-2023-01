@@ -8,6 +8,9 @@ export const swaggerDocument = {
     contact: {
       url: "https://github.com/Danilosrr",
     },
+    "x-logo": {
+      url: "https://www.sharenergy.com.br/wp-content/uploads/2022/12/logo_color.png?x56351",
+    },
   },
   host: "http://localhost:" + process.env.PORT,
   basePath: "/",
@@ -69,7 +72,7 @@ export const swaggerDocument = {
           },
         },
         responses: {
-          200: {
+          201: {
             description: "cadastro realizado",
             content: {
               "application/json": {
@@ -79,8 +82,11 @@ export const swaggerDocument = {
               },
             },
           },
+          400: { description: "valores inválidos" },
+          401: { description: "token ausente" },
           409: { description: "nome, cpf ou email já cadastrados" },
           422: { description: "corpo da requisição inválido" },
+          498: { description: "token inválido" },
         },
       },
       get: {
@@ -100,7 +106,7 @@ export const swaggerDocument = {
               },
             },
           },
-          400: { description: "token sem autorização" },
+          400: { description: "valores inválidos" },
           401: { description: "token ausente" },
           498: { description: "token inválido" },
         },
@@ -130,9 +136,12 @@ export const swaggerDocument = {
               },
             },
           },
+          400: { description: "valores inválidos" },
+          401: { description: "token ausente" },
           404: { description: "cliente não encontrado" },
           409: { description: "nome, cpf ou email já cadastrados" },
           422: { description: "corpo da requisição inválido" },
+          498: { description: "token inválido" },
         },
       },
       delete: {
@@ -160,8 +169,11 @@ export const swaggerDocument = {
               },
             },
           },
+          400: { description: "valores inválidos" },
+          401: { description: "token ausente" },
           404: { description: "cliente não encontrado" },
           422: { description: "corpo da requisição inválido" },
+          498: { description: "token inválido" },
         },
       },
     },
