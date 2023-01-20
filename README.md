@@ -12,7 +12,7 @@
 
 <div>
   <p>
-    construir uma aplicação web (frontend e backend) capaz de realizar a comunicação com APIs distintas, contendo um CRUD e um <a href="https://www.youtube.com/">vídeo</a> explicativo.
+    construir uma aplicação web (frontend e backend) capaz de realizar a comunicação com APIs distintas, contendo um CRUD e um <a href="https://youtu.be/QgRchTndC4Q">vídeo explicativo</a>.
   </p>
 </div>
 

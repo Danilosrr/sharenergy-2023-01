@@ -191,9 +191,9 @@ export const swaggerDocument = {
             example: "John Doe",
           },
           cpf: {
-            type: "number",
+            type: "string",
             description: "cpf do cliente, sem separadores",
-            example: 12345678910,
+            example: "12345678910",
           },
           email: {
             type: "string",
@@ -201,9 +201,9 @@ export const swaggerDocument = {
             example: "email@email.com",
           },
           phone: {
-            type: "number",
+            type: "string",
             description: "número com DDD sem separadores",
-            example: 99999999999,
+            example: "99999999999",
           },
           address: {
             type: "string",
@@ -226,9 +226,9 @@ export const swaggerDocument = {
             example: "John Doe",
           },
           cpf: {
-            type: "number",
+            type: "string",
             description: "cpf do cliente, sem separadores",
-            example: 12345678910,
+            example: "12345678910",
           },
           email: {
             type: "string",
@@ -236,9 +236,9 @@ export const swaggerDocument = {
             example: "email@email.com",
           },
           phone: {
-            type: "number",
+            type: "string",
             description: "número com DDD sem separadores",
-            example: 99999999999,
+            example: "99999999999",
           },
           address: {
             type: "string",
